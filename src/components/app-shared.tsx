@@ -2,14 +2,12 @@ import type { ReactNode } from "react";
 import {
 	HomeIcon,
 	UsersIcon,
-	CheckSquareIcon,
 	CalendarClockIcon,
 	FingerprintIcon,
 	CalendarOffIcon,
 	MapPinIcon,
 	WalletIcon,
 	HandCoinsIcon,
-	ListChecksIcon,
 	SettingsIcon,
 	HelpCircleIcon,
 } from "lucide-react";
@@ -46,11 +44,6 @@ export const navGroups: SidebarNavGroup[] = [
 	{
 		label: "Kehadiran",
 		items: [
-			{
-				title: "Approval Presensi",
-				path: "/dashboard/kehadiran/approval-presensi",
-				icon: <CheckSquareIcon />,
-			},
 			{
 				title: "Jadwal Kerja",
 				path: "/dashboard/kehadiran/jadwal-kerja",
@@ -94,16 +87,6 @@ export const navGroups: SidebarNavGroup[] = [
 		],
 	},
 	{
-		label: "Tugas",
-		items: [
-			{
-				title: "Tugas",
-				path: "/dashboard/tugas",
-				icon: <ListChecksIcon />,
-			},
-		],
-	},
-	{
 		label: "Pengaturan",
 		items: [
 			{
@@ -126,8 +109,8 @@ export const footerNavLinks: SidebarNavItem[] = [
 export const navLinks: SidebarNavItem[] = [
 	...navGroups.flatMap((group) =>
 		group.items.flatMap((item) =>
-			item.subItems?.length ? [item, ...item.subItems] : [item]
-		)
+			item.subItems?.length ? [item, ...item.subItems] : [item],
+		),
 	),
 	...footerNavLinks,
 ];
