@@ -8,6 +8,7 @@ import {
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
 	InputGroup,
 	InputGroupAddon,
@@ -38,11 +39,11 @@ import {
 	Upload,
 } from "lucide-react";
 
-export default function KaryawanPage() {
-	const employees = [
+export default function KandidatPage() {
+	const candidates = [
 		{
 			id: "111",
-			name: "Contoh Karyawan 1",
+			name: "Contoh Kandidat 1",
 			gender: "Laki-laki",
 			citizen: "WNI",
 			idType: "KTP",
@@ -54,7 +55,7 @@ export default function KaryawanPage() {
 		},
 		{
 			id: "222",
-			name: "Contoh Karyawan 2",
+			name: "Contoh Kandidat 2",
 			gender: "Perempuan",
 			citizen: "WNI",
 			idType: "KTP",
@@ -66,7 +67,7 @@ export default function KaryawanPage() {
 		},
 		{
 			id: "333",
-			name: "Contoh Karyawan 3",
+			name: "Contoh Kandidat 3",
 			gender: "Perempuan",
 			citizen: "WNI",
 			idType: "KTP",
@@ -118,7 +119,13 @@ export default function KaryawanPage() {
 					<BreadcrumbSeparator />
 					<BreadcrumbItem>
 						<BreadcrumbPage className="font-medium text-foreground">
-							Karyawan
+							Rekrutmen
+						</BreadcrumbPage>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<BreadcrumbPage className="font-medium text-foreground">
+							Kandidat
 						</BreadcrumbPage>
 					</BreadcrumbItem>
 				</BreadcrumbList>
@@ -127,10 +134,10 @@ export default function KaryawanPage() {
 			<div className="p-6 rounded-md border-border border">
 				{/* Header and Actions */}
 				<div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-					<h1 className="text-2xl font-bold tracking-tight">Karyawan</h1>
+					<h1 className="text-2xl font-bold tracking-tight">Kandidat</h1>
 					<div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto">
 						<Button>
-							<Plus className="mr-2 h-4 w-4" /> Tambah Karyawan
+							<Plus className="mr-2 h-4 w-4" /> Tambah Kandidat
 						</Button>
 
 						<DropdownMenu>
@@ -190,7 +197,7 @@ export default function KaryawanPage() {
 										<TableHead className="w-[50px] font-semibold">No.</TableHead>
 										<TableHead className="font-semibold min-w-[200px]">Nama</TableHead>
 										<TableHead className="font-semibold min-w-[120px]">
-											ID Karyawan
+											ID Kandidat
 										</TableHead>
 										<TableHead className="font-semibold min-w-[120px]">
 											Jenis Kelamin
@@ -211,30 +218,30 @@ export default function KaryawanPage() {
 									</TableRow>
 								</TableHeader>
 								<TableBody>
-									{employees.map((employee, index) => (
-										<TableRow key={employee.id}>
+									{candidates.map((candidate, index) => (
+										<TableRow key={candidate.id}>
 											<TableCell className="font-medium ">{index + 1}</TableCell>
 											<TableCell>
 												<div className="flex items-center gap-3">
 													<Avatar
-														className={`h-8 w-8 ${employee.avatarUrl ? "" : employee.color} text-white`}>
-														<AvatarImage src={employee.avatarUrl} alt={employee.name} />
+														className={`h-8 w-8 ${candidate.avatarUrl ? "" : candidate.color} text-white`}>
+														<AvatarImage src={candidate.avatarUrl} alt={candidate.name} />
 														<AvatarFallback className="bg-transparent ont-medium text-xs">
-															{employee.initials}
+															{candidate.initials}
 														</AvatarFallback>
 													</Avatar>
 													<span className="font-medium hover:underline cursor-pointer">
-														{employee.name}
+														{candidate.name}
 													</span>
 												</div>
 											</TableCell>
-											<TableCell>{employee.id}</TableCell>
-											<TableCell>{employee.gender}</TableCell>
-											<TableCell>{employee.citizen}</TableCell>
-											<TableCell>{employee.idType}</TableCell>
-											<TableCell>{employee.idNumber}</TableCell>
-											<TableCell>{employee.kkNumber}</TableCell>
-											<TableCell>{employee.birthPlace}</TableCell>
+											<TableCell>{candidate.id}</TableCell>
+											<TableCell>{candidate.gender}</TableCell>
+											<TableCell>{candidate.citizen}</TableCell>
+											<TableCell>{candidate.idType}</TableCell>
+											<TableCell>{candidate.idNumber}</TableCell>
+											<TableCell>{candidate.kkNumber}</TableCell>
+											<TableCell>{candidate.birthPlace}</TableCell>
 										</TableRow>
 									))}
 								</TableBody>

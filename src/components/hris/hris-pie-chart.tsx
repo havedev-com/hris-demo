@@ -34,7 +34,7 @@ export function HrisPieChart({ title, data, config }: HrisPieChartProps) {
 					<PieChart>
 						<ChartTooltip
 							cursor={false}
-							content={<ChartTooltipContent hideLabel />}
+							content={<ChartTooltipContent nameKey="name" />}
 						/>
 						<Pie
 							data={data}

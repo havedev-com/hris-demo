@@ -27,6 +27,7 @@ Dokumen ini mendefinisikan fitur-fitur yang termasuk dalam sistem HRIS custom un
 | 6 | Kasbon Karyawan | [kasbon-karyawan.md](./features/kasbon-karyawan.md) | Kasbon |
 | 7 | Manajemen Karir, Klien, & Tugas | [manajemen-karir-klien-tugas.md](./features/manajemen-karir-klien-tugas.md) | Kunjungan Klien, Tugas |
 | 8 | Setting Layout Slip Gaji | [setting-layout-slip-gaji.md](./features/setting-layout-slip-gaji.md) | *(dalam Pengaturan)* |
+| 9 | Rekrutmen | [rekrutmen.md](./features/rekrutmen.md) | Rekrutmen |
 
 ### Fitur Tambahan (termasuk PRO)
 - **Presensi / Fingerprint** — Import data Biofinger (ekspor-impor manual)
@@ -49,7 +50,6 @@ Fitur-fitur berikut berada di tier ELITE/CHAMPION dan **tidak termasuk** dalam s
 | Tracking GPS (Real-time) | ELITE | Pelacakan lokasi karyawan real-time |
 | THR Progressif | ELITE | THR bertahap berdasarkan performa |
 | KPI | CHAMPION | Key Performance Indicators |
-| Rekrutmen Karyawan | CHAMPION | Manajemen lowongan & kandidat |
 | Petty Cash | CHAMPION | Kas kecil perusahaan |
 | Liveness Detection | CHAMPION | Anti-spoofing biometrik |
 
@@ -76,6 +76,12 @@ Karyawan
 
 ── Tugas ──
    Tugas
+
+── Rekrutmen ──
+   Kandidat
+   Lowongan Pekerjaan
+   Wawancara
+   Penawaran Kerja
 
 ── Pengaturan ──
    Pengaturan

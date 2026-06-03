@@ -6,10 +6,8 @@ import {
 	Inter,
 	JetBrains_Mono,
 } from "next/font/google";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const jetbrainsMonoJetbrainsMono = JetBrains_Mono({
 	subsets: [
@@ -77,17 +75,7 @@ export default function RootLayout({
 				jetbrainsMonoJetbrainsMono.variable,
 			)}
 			suppressHydrationWarning>
-			<body className="min-h-full flex flex-col">
-				<TooltipProvider>
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="system"
-						enableSystem
-						disableTransitionOnChange>
-						{children}
-					</ThemeProvider>
-				</TooltipProvider>
-			</body>
+			<body className="min-h-full flex flex-col">{children}</body>
 		</html>
 	);
 }

@@ -11,6 +11,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
+	InputGroup,
+	InputGroupAddon,
+	InputGroupInput,
+} from "@/components/ui/input-group";
+import {
 	Table,
 	TableBody,
 	TableCell,
@@ -152,7 +157,7 @@ export default function PayrollPage() {
 					<h1 className="text-2xl font-bold tracking-tight">Payroll</h1>
 
 					{/* Top Right Actions */}
-					<div className="flex flex-wrap items-center gap-3">
+					<div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto">
 						<Button variant="outline" size="icon" className="font-normal">
 							<Smartphone className="h-4 w-4" />
 						</Button>
@@ -242,10 +247,12 @@ export default function PayrollPage() {
 									</SelectGroup>
 								</SelectContent>
 							</Select>
-							<div className="relative w-full md:max-w-xs">
-								<Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-								<Input type="search" placeholder="Cari" className="pl-9 " />
-							</div>
+							<InputGroup className="w-full md:max-w-xs">
+								<InputGroupAddon>
+									<Search className="text-muted-foreground" />
+								</InputGroupAddon>
+								<InputGroupInput type="search" placeholder="Cari" />
+							</InputGroup>
 						</div>
 					</div>
 

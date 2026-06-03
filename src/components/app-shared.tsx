@@ -10,6 +10,12 @@ import {
 	HandCoinsIcon,
 	SettingsIcon,
 	HelpCircleIcon,
+	BriefcaseIcon,
+	CircleDollarSign,
+	HandCoins,
+	MessageCircle,
+	BriefcaseBusinessIcon,
+	UserCog,
 } from "lucide-react";
 
 export type SidebarNavItem = {
@@ -74,6 +80,16 @@ export const navGroups: SidebarNavGroup[] = [
 				path: "/dashboard/payroll",
 				icon: <WalletIcon />,
 			},
+			{
+				title: "Slip Gaji",
+				path: "/dashboard/payroll/slip-gaji",
+				icon: <CircleDollarSign />,
+			},
+			{
+				title: "Gaji Tambahan",
+				path: "/dashboard/payroll/gaji-tambahan",
+				icon: <HandCoins />,
+			},
 		],
 	},
 	{
@@ -87,12 +103,42 @@ export const navGroups: SidebarNavGroup[] = [
 		],
 	},
 	{
+		label: "Rekrutmen",
+		items: [
+			{
+				title: "Kandidat",
+				path: "/dashboard/rekrutmen/kandidat",
+				icon: <UsersIcon />,
+			},
+			{
+				title: "Lowongan Pekerjaan",
+				path: "/dashboard/rekrutmen/lowongan",
+				icon: <BriefcaseIcon />,
+			},
+			{
+				title: "Wawancara",
+				path: "/dashboard/rekrutmen/wawancara",
+				icon: <MessageCircle />,
+			},
+			{
+				title: "Penawaran Kerja",
+				path: "/dashboard/rekrutmen/penawaran-kerja",
+				icon: <BriefcaseBusinessIcon />,
+			},
+		],
+	},
+	{
 		label: "Pengaturan",
 		items: [
 			{
 				title: "Pengaturan",
 				path: "/dashboard/pengaturan",
 				icon: <SettingsIcon />,
+			},
+			{
+				title: "User Management",
+				path: "/dashboard/user-management",
+				icon: <UserCog />,
 			},
 		],
 	},
