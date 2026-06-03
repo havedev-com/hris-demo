@@ -20,6 +20,8 @@ import {
 	Receipt,
 	Landmark,
 	TrendingDown,
+	UserMinus,
+	MonitorSmartphone,
 } from "lucide-react";
 
 export type SidebarNavItem = {
@@ -48,6 +50,11 @@ export const navGroups: SidebarNavGroup[] = [
 				title: "Karyawan",
 				path: "/dashboard/karyawan",
 				icon: <UsersIcon />,
+			},
+			{
+				title: "Offboarding",
+				path: "/dashboard/karyawan/offboarding",
+				icon: <UserMinus />,
 			},
 		],
 	},
@@ -148,6 +155,16 @@ export const navGroups: SidebarNavGroup[] = [
 				title: "Penawaran Kerja",
 				path: "/dashboard/rekrutmen/penawaran-kerja",
 				icon: <BriefcaseBusinessIcon />,
+			},
+		],
+	},
+	{
+		label: "Fasilitas",
+		items: [
+			{
+				title: "Manajemen Aset",
+				path: "/dashboard/fasilitas/aset",
+				icon: <MonitorSmartphone />,
 			},
 		],
 	},

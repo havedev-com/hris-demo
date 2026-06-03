@@ -38,91 +38,91 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Calendar } from "@/components/ui/calendar";
 import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-	Calendar as CalendarIcon,
+	CheckSquare,
 	ChevronDown,
 	Download,
 	Eye,
 	Filter,
-	Image as ImageIcon,
-	MapPin,
+	Plus,
 	Search,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
-export default function KunjunganKlienPage() {
-	const visits = [
+export default function OffboardingPage() {
+	const offboardings = [
 		{
 			id: "1",
-			name: "Dimas Andriano Herlambang",
-			nik: "EMP-2023-001",
-			client: "PT Maju Bersama",
-			date: "03 Jun 2026",
-			time: "09:00 - 11:30",
-			location: "Sudirman Central Business District",
-			purpose: "Meeting Proyek Sistem ERP",
-			status: "Selesai",
-			initials: "DA",
-			color: "bg-indigo-500",
-		},
-		{
-			id: "2",
 			name: "Jane Doe",
 			nik: "EMP-2023-002",
-			client: "Klinik Sejahtera",
-			date: "03 Jun 2026",
-			time: "13:00 - Saat ini",
-			location: "Kebon Jeruk, Jakarta Barat",
-			purpose: "Presentasi Software HRIS",
-			status: "Sedang Berlangsung",
+			department: "HR Dept",
+			type: "Resign",
+			dateRequested: "15 Mei 2026",
+			dateEffective: "15 Jun 2026",
+			status: "Clearance",
 			initials: "JD",
 			color: "bg-emerald-500",
 		},
 		{
-			id: "3",
+			id: "2",
 			name: "John Smith",
 			nik: "EMP-2023-003",
-			client: "CV Makmur Abadi",
-			date: "02 Jun 2026",
-			time: "-",
-			location: "Bekasi",
-			purpose: "Tanda Tangan Kontrak",
-			status: "Dibatalkan",
+			department: "Finance",
+			type: "Pensiun",
+			dateRequested: "01 Feb 2026",
+			dateEffective: "01 Jul 2026",
+			status: "Selesai",
 			initials: "JS",
-			color: "bg-gray-500",
+			color: "bg-amber-500",
+		},
+		{
+			id: "3",
+			name: "Sarah Williams",
+			nik: "EMP-2023-004",
+			department: "Marketing",
+			type: "PHK",
+			dateRequested: "28 Mei 2026",
+			dateEffective: "30 Mei 2026",
+			status: "Pending",
+			initials: "SW",
+			color: "bg-pink-500",
 		},
 	];
 
-	const [date, setDate] = React.useState<Date>();
-
 	const getStatusBadge = (status: string) => {
 		switch (status) {
+			case "Pending":
+				return (
+					<Badge className="bg-orange-100 text-orange-800 hover:bg-orange-200 border-orange-200">
+						Menunggu
+					</Badge>
+				);
+			case "Clearance":
+				return (
+					<Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 border-blue-200">
+						Proses Clearance
+					</Badge>
+				);
 			case "Selesai":
 				return (
 					<Badge className="bg-green-100 text-green-800 hover:bg-green-200 border-green-200">
-						{status}
-					</Badge>
-				);
-			case "Sedang Berlangsung":
-				return (
-					<Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 border-blue-200">
-						{status}
-					</Badge>
-				);
-			case "Dibatalkan":
-				return (
-					<Badge className="bg-red-100 text-red-800 hover:bg-red-200 border-red-200">
-						{status}
+						Selesai (Offboarded)
 					</Badge>
 				);
 			default:
 				return <Badge variant="outline">{status}</Badge>;
+		}
+	};
+
+	const getTypeBadge = (type: string) => {
+		switch (type) {
+			case "Resign":
+				return <Badge variant="outline" className="text-gray-600 bg-gray-50">{type}</Badge>;
+			case "PHK":
+				return <Badge variant="secondary" className="bg-red-100 text-red-800 hover:bg-red-200">{type}</Badge>;
+			case "Pensiun":
+				return <Badge variant="secondary" className="bg-purple-100 text-purple-800 hover:bg-purple-200">{type}</Badge>;
+			default:
+				return <Badge variant="outline">{type}</Badge>;
 		}
 	};
 
@@ -141,13 +141,13 @@ export default function KunjunganKlienPage() {
 					<BreadcrumbSeparator />
 					<BreadcrumbItem>
 						<BreadcrumbPage className="font-medium text-muted-foreground">
-							Kehadiran
+							Karyawan
 						</BreadcrumbPage>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator />
 					<BreadcrumbItem>
 						<BreadcrumbPage className="font-medium text-foreground">
-							Kunjungan Klien
+							Offboarding
 						</BreadcrumbPage>
 					</BreadcrumbItem>
 				</BreadcrumbList>
@@ -156,20 +156,22 @@ export default function KunjunganKlienPage() {
 			<div className="p-6 rounded-md border-border border">
 				{/* Header and Actions */}
 				<div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-					<h1 className="text-2xl font-bold tracking-tight">Kunjungan Klien</h1>
+					<h1 className="text-2xl font-bold tracking-tight">Proses Offboarding</h1>
 					<div className="flex flex-wrap items-center gap-3">
+						<Button>
+							<Plus className="mr-2 h-4 w-4" /> Ajukan Offboarding
+						</Button>
+
 						<DropdownMenu>
 							<DropdownMenuTrigger>
-								<Button
-									variant="outline"
-									className="gap-2 font-normal w-full sm:w-auto">
-									<Download className="h-4 w-4" /> Ekspor Data{" "}
+								<Button variant="outline" className="gap-2 font-normal w-full sm:w-auto">
+									<Download className="h-4 w-4" /> Ekspor{" "}
 									<ChevronDown className="h-4 w-4" />
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end">
-								<DropdownMenuItem>Ekspor Excel</DropdownMenuItem>
-								<DropdownMenuItem>Ekspor PDF</DropdownMenuItem>
+								<DropdownMenuItem>Laporan Offboarding Excel</DropdownMenuItem>
+								<DropdownMenuItem>Form Clearance PDF</DropdownMenuItem>
 							</DropdownMenuContent>
 						</DropdownMenu>
 					</div>
@@ -181,34 +183,26 @@ export default function KunjunganKlienPage() {
 						<div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 w-full sm:w-auto">
 							<Select>
 								<SelectTrigger className="w-full sm:w-[150px]">
-									<SelectValue placeholder="Status" />
+									<SelectValue placeholder="Tipe Berhenti" />
 								</SelectTrigger>
 								<SelectContent>
-									<SelectItem value="selesai">Selesai</SelectItem>
-									<SelectItem value="sedang-berlangsung">Sedang Berlangsung</SelectItem>
-									<SelectItem value="dibatalkan">Dibatalkan</SelectItem>
+									<SelectItem value="resign">Resign</SelectItem>
+									<SelectItem value="phk">PHK</SelectItem>
+									<SelectItem value="pensiun">Pensiun</SelectItem>
+									<SelectItem value="kontrak">Habis Kontrak</SelectItem>
 								</SelectContent>
 							</Select>
 
-							{/* Date Picker Filter */}
-							<Popover>
-								<PopoverTrigger
-									render={
-										<Button
-											variant={"outline"}
-											className={cn(
-												"w-full sm:w-[200px] justify-start text-left font-normal gap-2",
-												!date && "text-muted-foreground",
-											)}>
-											<CalendarIcon className="h-4 w-4" />
-											{date ? date.toLocaleDateString() : <span>Pilih Tanggal</span>}
-										</Button>
-									}
-								/>
-								<PopoverContent className="w-auto p-0" align="start">
-									<Calendar mode="single" selected={date} onSelect={setDate} />
-								</PopoverContent>
-							</Popover>
+							<Select>
+								<SelectTrigger className="w-full sm:w-[150px]">
+									<SelectValue placeholder="Status" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="pending">Menunggu</SelectItem>
+									<SelectItem value="clearance">Proses Clearance</SelectItem>
+									<SelectItem value="selesai">Selesai</SelectItem>
+								</SelectContent>
+							</Select>
 
 							<Button variant="outline" className="gap-2 font-normal w-full sm:w-auto">
 								<Filter className="h-4 w-4" /> More Filters
@@ -219,7 +213,7 @@ export default function KunjunganKlienPage() {
 							<InputGroupAddon>
 								<Search className="text-muted-foreground" />
 							</InputGroupAddon>
-							<InputGroupInput type="search" placeholder="Cari Karyawan / Klien..." />
+							<InputGroupInput type="search" placeholder="Cari Karyawan / NIK..." />
 						</InputGroup>
 					</div>
 
@@ -229,35 +223,40 @@ export default function KunjunganKlienPage() {
 							<Table>
 								<TableHeader className="bg-muted/50">
 									<TableRow>
-										<TableHead className="w-12 text-center font-semibold">No.</TableHead>
-										<TableHead className="font-semibold min-w-[200px]">
+										<TableHead className="w-12 text-center font-semibold">
+											No.
+										</TableHead>
+										<TableHead className="font-semibold min-w-[250px]">
 											Karyawan
 										</TableHead>
-										<TableHead className="font-semibold min-w-[180px]">
-											Klien / Tujuan
+										<TableHead className="font-semibold min-w-[150px]">
+											Tipe Berhenti
 										</TableHead>
-										<TableHead className="font-semibold min-w-[120px]">Tanggal</TableHead>
-										<TableHead className="font-semibold min-w-[120px]">
-											Waktu In/Out
+										<TableHead className="font-semibold min-w-[150px]">
+											Tgl Pengajuan
 										</TableHead>
-										<TableHead className="font-semibold min-w-[200px]">
-											Lokasi (GPS)
+										<TableHead className="font-semibold min-w-[150px]">
+											Tgl Efektif Keluar
 										</TableHead>
-										<TableHead className="font-semibold min-w-[120px]">Status</TableHead>
+										<TableHead className="font-semibold min-w-[150px]">
+											Status
+										</TableHead>
 										<TableHead className="font-semibold min-w-[100px] text-right">
 											Aksi
 										</TableHead>
 									</TableRow>
 								</TableHeader>
 								<TableBody>
-									{visits.map((item, index) => (
+									{offboardings.map((item, index) => (
 										<TableRow key={item.id}>
 											<TableCell className="text-center font-medium">
 												{index + 1}
 											</TableCell>
 											<TableCell>
 												<div className="flex items-center gap-3">
-													<Avatar className={`h-9 w-9 ${item.color} text-white`}>
+													<Avatar
+														className={`h-9 w-9 ${item.color} text-white`}
+													>
 														<AvatarFallback className="bg-transparent font-medium text-xs">
 															{item.initials}
 														</AvatarFallback>
@@ -266,35 +265,28 @@ export default function KunjunganKlienPage() {
 														<span className="font-medium hover:underline cursor-pointer">
 															{item.name}
 														</span>
-														<span className="text-xs text-muted-foreground">{item.nik}</span>
+														<span className="text-xs text-muted-foreground">
+															{item.nik} • {item.department}
+														</span>
 													</div>
 												</div>
 											</TableCell>
-											<TableCell>
-												<div className="flex flex-col">
-													<span className="font-medium">{item.client}</span>
-													<span className="text-xs text-muted-foreground">
-														{item.purpose}
-													</span>
-												</div>
+											<TableCell>{getTypeBadge(item.type)}</TableCell>
+											<TableCell className="text-muted-foreground text-sm">
+												{item.dateRequested}
 											</TableCell>
-											<TableCell>{item.date}</TableCell>
-											<TableCell className="text-muted-foreground">{item.time}</TableCell>
-											<TableCell>
-												<div className="flex items-center gap-2">
-													<MapPin className="h-3 w-3 text-red-500" />
-													<span className="text-sm truncate max-w-[150px]">
-														{item.location}
-													</span>
-												</div>
+											<TableCell className="font-medium">
+												{item.dateEffective}
 											</TableCell>
 											<TableCell>{getStatusBadge(item.status)}</TableCell>
 											<TableCell className="text-right">
 												<div className="flex items-center justify-end gap-2">
-													<Button variant="ghost" size="icon" title="Lihat Foto Bukti">
-														<ImageIcon className="h-4 w-4 text-blue-500" />
-													</Button>
-													<Button variant="ghost" size="icon" title="Detail Kunjungan">
+													{item.status !== "Selesai" && (
+														<Button variant="outline" size="sm" className="text-xs h-8 gap-1 border-blue-200 text-blue-700 hover:bg-blue-50">
+															<CheckSquare className="h-3 w-3" /> Clearance
+														</Button>
+													)}
+													<Button variant="ghost" size="icon" title="Detail Offboarding">
 														<Eye className="h-4 w-4 text-muted-foreground" />
 													</Button>
 												</div>
