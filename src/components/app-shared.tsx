@@ -16,6 +16,10 @@ import {
 	MessageCircle,
 	BriefcaseBusinessIcon,
 	UserCog,
+	CalendarCheck,
+	Receipt,
+	Landmark,
+	TrendingDown,
 } from "lucide-react";
 
 export type SidebarNavItem = {
@@ -70,6 +74,11 @@ export const navGroups: SidebarNavGroup[] = [
 				path: "/dashboard/kehadiran/kunjungan-klien",
 				icon: <MapPinIcon />,
 			},
+			{
+				title: "Saldo Cuti",
+				path: "/dashboard/kehadiran/saldo-cuti",
+				icon: <CalendarCheck />,
+			},
 		],
 	},
 	{
@@ -90,6 +99,16 @@ export const navGroups: SidebarNavGroup[] = [
 				path: "/dashboard/payroll/gaji-tambahan",
 				icon: <HandCoins />,
 			},
+			{
+				title: "Pajak & BPJS",
+				path: "/dashboard/payroll/pajak-bpjs",
+				icon: <Landmark />,
+			},
+			{
+				title: "Potongan Gaji",
+				path: "/dashboard/payroll/potongan",
+				icon: <TrendingDown />,
+			},
 		],
 	},
 	{
@@ -99,6 +118,11 @@ export const navGroups: SidebarNavGroup[] = [
 				title: "Kasbon",
 				path: "/dashboard/keuangan/kasbon",
 				icon: <HandCoinsIcon />,
+			},
+			{
+				title: "Reimbursement",
+				path: "/dashboard/keuangan/reimbursement",
+				icon: <Receipt />,
 			},
 		],
 	},
